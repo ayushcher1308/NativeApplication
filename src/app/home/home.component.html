@@ -1,0 +1,44 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+      <h2 style="color:black">Sales Master App</h2>
+    <!-- Tabs Titles -->
+    <!-- Icon -->
+    <div class="fadeIn first">
+      <img src="../../assets/favicon.png" id="icon" alt="User Icon" />
+    </div>
+
+    <!-- Login Form -->
+    <form [formGroup]="LoginForm">
+      <input type="text" id="login" class="fadeIn second" name="login" placeholder="Email" formControlName="emailid">
+      <!-- error tags for login -->
+     <br> <span *ngIf=" (LoginForm.get('emailid').touched ||
+		LoginForm.get('emailid').dirty) && LoginForm.get('emailid').invalid">
+			<span *ngIf="LoginForm.get('emailid').errors.required" style="color:red;font-size:13px">*Email is required</span>
+			<span *ngIf="LoginForm.get('emailid').errors.email" style="color:red;font-size:13px">*Email must be a valid email address</span>
+		</span><br>
+      <input type="password" id="password" class="fadeIn third" name="login" placeholder="Password" formControlName="password"><br>
+        <!-- error tags for password -->
+        <span *ngIf=" (LoginForm.get('password').touched ||
+        LoginForm.get('password').dirty) && LoginForm.get('password').invalid">
+          <span *ngIf="LoginForm.get('password').errors.required" style="color:red;font-size:13px" >*Password is required</span>
+          <span *ngIf="LoginForm.get('password').errors.minlength" style="color:red;font-size:13px">*Password must be of minimum 6 characters</span>
+        </span><br>
+
+      <input type="submit" class="fadeIn fourth" value="Log In" [disabled]="LoginForm.invalid" (click)="LoginUser()">
+    </form>
+
+    <!-- Remind Passowrd -->
+    <!-- <div id="formFooter">
+      <a class="underlineHover" href="#">Forgot Password?</a>
+    </div> -->
+
+  </div>
+  
+</div>
+
+

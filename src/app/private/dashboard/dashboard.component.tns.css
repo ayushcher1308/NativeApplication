@@ -1,0 +1,83 @@
+
+#a1{ 
+    font-size: 16; 
+    color: #39ace7; 
+    } 
+    
+    #a2{ 
+    font-size: 20; 
+    }
+
+/* .listItemStackLayout { 
+    background-color: white; 
+    padding-left: 5; 
+    } 
+    
+    .labelName { 
+    font-size: 20; 
+    margin-bottom: 8; 
+    } 
+    
+    .labelTitle { 
+    font-size: 14; 
+    font-weight: bold; 
+    } 
+    
+    .labelText { 
+    font-size: 12; 
+    } 
+    
+    .markViewStackLayout { 
+    background-color: blue; 
+    padding: 16 
+    } 
+    
+    .deleteViewStackLayout { 
+    background-color: red; 
+    padding: 16; 
+    } 
+    
+    .gridLayoutLayout { 
+    background-color: white; 
+    } 
+    
+    
+    .swipeTemplateLabel { 
+    size: 20; 
+    }
+    
+     */
+
+     /* .sideStackLayout {
+        background-color: #555555;
+        color: #FFFFFF;
+    }
+    
+    .sideTitleStackLayout {
+        padding: 16;
+        font-weight: bold;
+        background-color: #333333;
+    }
+    
+    .sideLabel {
+        padding: 16;
+    }
+    
+    .listItemStackLayout {
+        padding: 16;
+        background-color: #FFFFFF;
+    }
+    
+    .archiveViewStackLayout {
+        padding: 16;
+        background-color: #387EF5;
+        color: #FFFFFF;
+    }
+    
+    .deleteViewStackLayout {
+        padding: 16;
+        background-color: #EF473A;
+        color: #FFFFFF;
+    }
+    
+    @import 'nativescript-theme-core/css/core.light.css'; */

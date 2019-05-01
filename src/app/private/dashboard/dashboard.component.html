@@ -1,0 +1,52 @@
+<div class="bar"><app-navbar></app-navbar></div>
+<div class="main">
+        <div class="col-sm-2"></div>
+<div class="col-sm-6 List">
+    
+        <div *ngFor="let detail of details;index as i"  
+        [class.selected]="detail === selectedTeam"
+        (click)="onSelect(detail,detail.team_name,detail.amount,i)"
+        class="row" >
+            <div class="card" data-toggle="modal" data-target="#myModal">
+            <!-- <img src="img_avatar2.png" alt="Avatar" style="width:100%"> -->
+            <div class="container">
+                <h2 style="color:#56baed"><b>{{detail.team_name}}</b></h2>
+                <!-- <button type="button" class="btn btn-outline-primary">Primary</button> -->
+                <!-- <div class="myBtn"><button type="button" class="btn">Edit Team</button></div>  -->
+                <p><b>Team Revenue: {{detail.amount | currency}}</b></p>  
+            </div>
+            </div>
+        </div>
+   
+</div>
+
+<div class="footer">
+        <h3>Total Team Revenue: {{totalAmount | currency}}</h3>
+      </div>
+</div>  
+
+
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+  
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">EDIT DETAILS</h4>
+        </div>
+        <div class="modal-body">
+            <app-team-details [detail]="selectedTeam"></app-team-details>
+        </div>
+        <!-- <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div> -->
+      </div>
+  
+    </div>
+  </div>
+
+
+
