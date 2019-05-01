@@ -71,7 +71,7 @@ export class DashboardComponent implements OnInit {
       // } else if (response && response.status === 401) {
       //   this.logout();
       // }
-
+      console.log("refreshing");
     });
   }
   

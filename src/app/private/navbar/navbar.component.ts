@@ -26,7 +26,9 @@ export class NavbarComponent implements OnInit {
   }
   add_team()
   {
-    this.router.navigate(['/addTeam'])
+    this.router.navigate(['teams/team','null'], {
+      queryParams: { 'team_name': null, 'amount': null }
+    });
   }
 
 }
