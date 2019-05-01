@@ -12,6 +12,9 @@ import { NativeScriptFormsModule } from "nativescript-angular/forms";
 import { NativeScriptHttpModule } from "nativescript-angular/http";
 import { TeamDetailsComponent } from './private/team-details/team-details.component';
 import { AddTeamComponent } from './private/add-team/add-team.component';
+import { TeamComponent } from './team/team.component';
+import { PrivateComponent } from './private/private.component';
+import { AddEditComponent } from './private/add-edit/add-edit.component';
 // import { NativeScriptUIListViewModule } from 'nativescript-ui-listview/angular/listview-directives';
 // import { LISTVIEW_DIRECTIVES } from 'nativescript-telerik-ui/listview/angular';
 // import { TeamService } from './Services/team.service';
@@ -31,6 +34,9 @@ import { AddTeamComponent } from './private/add-team/add-team.component';
     NavbarComponent,
     TeamDetailsComponent,
     AddTeamComponent,
+    TeamComponent,
+    PrivateComponent,
+    AddEditComponent,
     // LISTVIEW_DIRECTIVES
   ],
   imports: [

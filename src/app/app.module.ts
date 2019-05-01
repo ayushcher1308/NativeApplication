@@ -11,6 +11,9 @@ import { FormsModule , ReactiveFormsModule} from '@angular/forms';
 import { NavbarComponent } from './private/navbar/navbar.component';
 import { TeamDetailsComponent } from './private/team-details/team-details.component';
 import { AddTeamComponent } from './private/add-team/add-team.component';
+import { TeamComponent } from './team/team.component';
+import { AddEditComponent } from './private/add-edit/add-edit.component';
+// import { PrivateComponent } from './private/private.component';
 // import { NativeScriptFormsModule } from 'nativescript-angular/forms';
 
 
@@ -22,6 +25,9 @@ import { AddTeamComponent } from './private/add-team/add-team.component';
     NavbarComponent,
     TeamDetailsComponent,
     AddTeamComponent,
+    TeamComponent,
+    AddEditComponent,
+    // PrivateComponent,
   ],
   imports: [
     BrowserModule,

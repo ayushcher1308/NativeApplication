@@ -1,0 +1,46 @@
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" [routerLink]="['/teams']" >&times;</button>
+        <!-- <h4 class="modal-title">EDIT DETAILS</h4> -->
+      </div>
+      <div class="modal-body">
+        <div class="container"> 
+          <div class="row"> 
+          <div class="col-md-6 offset-md-3"> 
+          <h3>Add New Team</h3> 
+          <br><br> 
+          <form [formGroup]="addTeamForm" > 
+          <div class="form-group"> 
+          <label>Team Name</label> 
+          
+          <input type="text" formControlName="teamName" class="form-control" [ngClass]="{ 'is-invalid': submitted &amp;&amp; addTeamForm.controls.teamName.errors }" /> 
+          <div *ngIf="submitted &amp;&amp; addTeamForm.controls.teamName.errors" class="text-danger"> 
+          <div *ngIf="addTeamForm.controls.teamName.errors.required">Team name is required</div> 
+          </div> 
+          
+          </div> 
+          <div class="form-group"> 
+          <label>Revenue</label> 
+          <input type="text" formControlName="revenue" class="form-control" [ngClass]="{ 'is-invalid': submitted &amp;&amp; addTeamForm.controls.revenue.errors }" /> 
+          <div *ngIf="submitted &amp;&amp; addTeamForm.controls.revenue.errors" class="text-danger"> 
+          <div *ngIf="addTeamForm.controls.revenue.errors.required">Revenue is required</div> 
+          </div> 
+          </div> 
+          <div class="form-group"> 
+          <button class="btn btn-primary login-btn" (click)="addTeam()">Add Team</button> 
+          </div> 
+          
+          </form> 
+          </div> 
+          </div> 
+          </div>
+      </div>
+    </div>
+
+  </div>
+</div>

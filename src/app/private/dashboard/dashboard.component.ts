@@ -40,7 +40,7 @@ export class DashboardComponent implements OnInit {
     console.log(i);
     this.storeData.setScope(detail,i);
     console.log(detail);
-    this.router.navigate(['teams',i], {
+    this.router.navigate(['teams/team',i], {
       queryParams: { 'team_name': teamName, 'amount': amount }
     });
     
