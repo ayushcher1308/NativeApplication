@@ -18,9 +18,12 @@ export class AddEditComponent implements OnInit {
 
   addTeamForm: FormGroup; 
   i;
+  buttonType;
+  delete:boolean=false;
   details: Teams[];
   @ViewChild('closeAddExpenseModal') closeAddExpenseModal: ElementRef;
   ngOnInit() {
+    this.button();
     this.addTeamForm = this.formBuilder.group({ 
       teamName: [this._route.snapshot.queryParamMap.get('team_name'), Validators.required], 
       revenue: [this._route.snapshot.queryParamMap.get('amount'), Validators.required] 
@@ -37,6 +40,22 @@ export class AddEditComponent implements OnInit {
 })
 }
 
+button()
+{
+  if(this._route.snapshot.queryParamMap.get('team_name')==null && this._route.snapshot.queryParamMap.get('amount')==null )
+  {
+    this.buttonType = 'Add Team';
+    this.delete = false;
+    console.log('addt');
+  }
+  else
+  {
+    this.buttonType = 'Update Team';
+    this.delete = true;
+    console.log('updat');
+  }
+}
+
   update_edit(){
     if(this._route.snapshot.queryParamMap.get('team_name')==null && this._route.snapshot.queryParamMap.get('amount')==null )
     {
@@ -47,14 +66,15 @@ export class AddEditComponent implements OnInit {
         console.log(response); 
         if (response && response.status === 401) {alert("Session Expired");}
         this.closeAddExpenseModal.nativeElement.click(); 
-        this.router.navigate(['/teams']);
-        // location.reload();
+        //  location.reload();
+         this.router.navigate(['/teams']);
         }); 
         }
     }
     else
     {
-      console.log("update");
+      this.buttonType = 'Update Team';
+      // console.log("update");
     this.i = this._route.snapshot.paramMap.get('i');
     console.log(this.i);
     let data = {
@@ -71,10 +91,30 @@ export class AddEditComponent implements OnInit {
       }
     });
     // console.log(this.teams[this.i].team_name);
-    
-this.router.navigate(['teams']);
+    this.closeAddExpenseModal.nativeElement.click();    
+      this.router.navigate(['teams']);
+      // location.reload();
     }
 
   }
+
+  deleteTeam(s)
+{
+  this.i = this._route.snapshot.paramMap.get('i');
+  console.log(this.i);
+  let data = {
+    team_id: this.details[this.i].team_id
+ };
+ this.teamService.deleteTeam(data).subscribe(response =>{
+      console.log(response);
+      // location.reload();
+ });
+ this.closeAddExpenseModal.nativeElement.click();  
+ this.router.navigate(['/teams']);
+
+      //  location.reload();
+
+}
+
 
 }

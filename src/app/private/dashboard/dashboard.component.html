@@ -1,19 +1,21 @@
 <div class="bar"><app-navbar></app-navbar></div>
-<div class="main">
-        <div class="col-sm-2"></div>
-<div class="col-sm-6 List">
+<div class="container">
+<div class="main row">
+        
+<div class="col-xs-12 List">
     
         <div *ngFor="let detail of details;index as i"  
         [class.selected]="detail === selectedTeam"
         (click)="onSelect(detail,detail.team_name,detail.amount,i)"
-        class="row" >
+        class="col-sm-12 res">
             <div class="card" data-toggle="modal" data-target="#myModal">
             <!-- <img src="img_avatar2.png" alt="Avatar" style="width:100%"> -->
             <div class="container">
                 <h2 style="color:#56baed"><b>{{detail.team_name}}</b></h2>
                 <!-- <button type="button" class="btn btn-outline-primary">Primary</button> -->
                 <!-- <div class="myBtn"><button type="button" class="btn">Edit Team</button></div>  -->
-                <p><b>Team Revenue: {{detail.amount | currency}}</b></p>  
+                <p><b>Team Revenue: {{detail.amount | currency}}</b></p>
+          
             </div>
             </div>
         </div>
@@ -21,9 +23,12 @@
 </div>
 
 <router-outlet></router-outlet>
-
-<div class="footer">
+<div class="col-xs-4"></div>
+</div>
+<div class="row">
+<div class="footer col-xs-12">
         <h3>Total Team Revenue: {{totalAmount | currency}}</h3>
+      </div>
       </div>
 </div>  
 
@@ -46,6 +51,5 @@
   
     </div>
   </div> -->
-
 
 

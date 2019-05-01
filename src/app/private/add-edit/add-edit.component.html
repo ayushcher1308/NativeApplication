@@ -6,13 +6,12 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" [routerLink]="['/teams']" #closeAddExpenseModal>&times;</button>
-        <!-- <h4 class="modal-title">EDIT DETAILS</h4> -->
+        <h4 class="modal-title">{{buttonType}}</h4>
       </div>
       <div class="modal-body">
         <div class="container"> 
           <div class="row"> 
           <div class="col-md-6 offset-md-3"> 
-          <h3>Add New Team</h3> 
           <br><br> 
           <form [formGroup]="addTeamForm" > 
           <div class="form-group"> 
@@ -32,9 +31,12 @@
           </div> 
           </div> 
           <div class="form-group"> 
-          <button class="btn btn-primary login-btn" (click)="update_edit()">Add Team</button> 
-          </div> 
           
+          <button class="btn btn-primary login-btn" (click)="update_edit()">{{buttonType}}</button>&nbsp;
+          <button *ngIf="delete" class="btn btn-danger login-btn" (click)="deleteTeam()" >Delete</button> 
+          
+  
+          </div>
           </form> 
           </div> 
           </div> 
