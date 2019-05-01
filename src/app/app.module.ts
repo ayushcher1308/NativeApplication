@@ -13,6 +13,7 @@ import { NavbarComponent } from './private/navbar/navbar.component';
 // import { AddTeamComponent } from './private/add-team/add-team.component';
 // import { TeamComponent } from './team/team.component';
 import { AddEditComponent } from './private/add-edit/add-edit.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 // import { PrivateComponent } from './private/private.component';
 // import { NativeScriptFormsModule } from 'nativescript-angular/forms';
 
@@ -27,6 +28,7 @@ import { AddEditComponent } from './private/add-edit/add-edit.component';
     // AddTeamComponent,
     // TeamComponent,
     AddEditComponent,
+    PageNotFoundComponent,
     // PrivateComponent,
   ],
   imports: [

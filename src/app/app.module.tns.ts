@@ -15,6 +15,7 @@ import { AddTeamComponent } from './private/add-team/add-team.component';
 import { TeamComponent } from './team/team.component';
 import { PrivateComponent } from './private/private.component';
 import { AddEditComponent } from './private/add-edit/add-edit.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 // import { NativeScriptUIListViewModule } from 'nativescript-ui-listview/angular/listview-directives';
 // import { LISTVIEW_DIRECTIVES } from 'nativescript-telerik-ui/listview/angular';
 // import { TeamService } from './Services/team.service';
@@ -37,6 +38,7 @@ import { AddEditComponent } from './private/add-edit/add-edit.component';
     TeamComponent,
     PrivateComponent,
     AddEditComponent,
+    PageNotFoundComponent,
     // LISTVIEW_DIRECTIVES
   ],
   imports: [
