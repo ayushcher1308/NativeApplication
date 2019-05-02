@@ -1,1 +1,16 @@
-<Button text="navbar works!" class="btn btn-primary"></Button>
+<ActionBar title="C" class="action-bar" > 
+
+    <GridLayout rows="*,auto" columns="auto,*,auto" padding="0 4 0 0" height="100%" 
+    width="100%"> 
+    <Label id="a1" *ngIf="but" row="0" col="0" text="Logout" class="action-item-left" 
+    (tap)="logout()"></Label> 
+    <Label id="a2" row="0" col="1" text="{{Title}}" 
+    horizontalAlignment="center"></Label> 
+    <Label id="a1" *ngIf="but" row="0" col="2" text="Add" class="action-item-right" 
+    (tap)="add_team()"> 
+    </Label> 
+    
+    </GridLayout> 
+    
+    
+    </ActionBar>

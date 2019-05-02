@@ -1,95 +1,38 @@
-<ActionBar title="C" class="action-bar"> 
-
-    <GridLayout rows="*,auto" columns="auto,*,auto" padding="0 4 0 0" height="100%" 
-    width="100%"> 
-    <Label id="a1" row="0" col="0" text="Logout" class="action-item-left" 
-    (tap)="onBackButtonTap()"></Label> 
-    <Label id="a2" row="0" col="1" text="Team's Revenue" 
-    horizontalAlignment="center"></Label> 
-    <Label id="a1" row="0" col="2" text="Add" class="action-item-right" 
-    (tap)="onEditButtonTap()"> 
-    </Label> 
+<app-navbar></app-navbar>
     
+    <GridLayout rows="*,40"> 
+    <RadListView class="list-group" [items]="details" [class.selected]="detail === selectedTeam" (itemSwipeProgressEnded)="onSwipeCellFinished($event)" (itemTap)="onSelectlist($event)"
+    (itemSwipeProgressStarted)="onSwipeCellStarted($event)" (itemSwipeProgressChanged)="onCellSwiping($event)" swipeActions="true"> --> 
+    <PullToRefresh (refresh)="refreshMe($event)"> 
+    <ng-template let-item="item" > 
+    <StackLayout class="list-group-item" orientation="vertical" style="background-color:whitesmoke" > 
+    <GridLayout> 
+    <Label row="0" col="0" class="team" text={{item.team_name}}></Label> 
+    <Label row="0" col="1" style.textAlignment="right" text={{item.amount|currency}} ></Label> 
     </GridLayout> 
+    <!-- <StackLayout height="1" backgroundColor ="black"></StackLayout> --> 
+    </StackLayout> 
+    </ng-template> 
+    
+    <GridLayout *tkListItemSwipeTemplate columns="*, auto" class="gridLayoutLayout" > 
+    <StackLayout id="delete-view" col="1" class="deleteViewStackLayout" (tap)="onRightSwipeClick($event)" style="background-color: red"> 
+    <Label text="delete" class="swipeTemplateLabel" verticalAlignment="center" horizontalAlignment="center" ></Label> 
+    </StackLayout> 
+    </GridLayout> 
+    </PullToRefresh> 
+    
+    </RadListView> 
+    </GridLayout> 
+    <GridLayout rows="auto,auto" columns="auto,*" class="docklayout" 
+stretchLastChild="false" height="60" backgroundColor="lightgray"> 
+<Label row="0"></Label> 
+<Label row="1" col="0" text="bottom" horizontalAlignment="left" 
+veticalAlignment="bottom"></Label> 
+<Label row="1" col="1" text="total" horizontalAlignment="right" 
+veticalAlignment="bottom"></Label> 
+</GridLayout>
+    <page-router-outlet></page-router-outlet>
+    
+    <!-- <app-team-details [detail]="selectedTeam"></app-team-details> -->
     
     
-    </ActionBar>
-
-
-<ScrollView class="page"> 
-<ListView class="list-group"  [items]="details" [class.selected]="detail === selectedTeam" (itemTap)="onSelectlist($event)"> 
-<ng-template let-item="item" > 
-<GridLayout class="list-group-item" rows="*" columns="auto, *"  > 
-<Label row="0" col="0"  text={{item.team_name}}></Label>  
-<Label row="0" col="1" style.textAlignment="right" text={{item.amount|currency}} ></Label> 
-</GridLayout> 
-</ng-template> 
-</ListView> 
-</ScrollView>
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- <RadSideDrawer tkExampleTitle tkToggleNavButton>
-  <StackLayout tkDrawerContent class="sideStackLayout">
-      <StackLayout class="sideTitleStackLayout">
-          <Label text="Menu"></Label>
-      </StackLayout>
-      <ScrollView>
-          <StackLayout class="sideStackLayout">
-              <Label text="Primary" class="sideLabel" (tap)="onMenuTapped('Primary')"></Label>
-              <Label text="Social" class="sideLabel" (tap)="onMenuTapped('Social')"></Label>
-              <Label text="Promotions" class="sideLabel" (tap)="onMenuTapped('Promotions')"></Label>
-              <Label text="Labels" class="sideLabel" (tap)="onMenuTapped('Labels')"></Label>
-              <Label text="Important" class="sideLabel" (tap)="onMenuTapped('Important')"></Label>
-              <Label text="Starred" class="sideLabel" (tap)="onMenuTapped('Starred')"></Label>
-              <Label text="Sent Mail" class="sideLabel" (tap)="onMenuTapped('Sent Mail')"></Label>
-              <Label text="Drafts" class="sideLabel" (tap)="onMenuTapped('Drafts')"></Label>
-          </StackLayout>
-      </ScrollView>
-  </StackLayout> -->
-  <!-- <StackLayout tkMainContent class="mainContent">
-      <GridLayout>
-          <RadListView
-              id="radlistview"
-              [items]="details"
-              itemSwipe="true"
-              pullToRefresh="true"
-              (pullToRefreshInitiated)="onPullToRefreshInitiated($event)"
-              (itemSwipeProgressStarted)="onSwipeCellStarted($event)">
-              <Template tkListItemTemplate let-email="item">
-                  <StackLayout class="listItemStackLayout">
-                      <Label text="{{ details.amount }}"></Label>
-                  </StackLayout>
-              </Template>
-              <GridLayout *tkListItemSwipeTemplate columns="auto, *, auto" class="listItemSwipeGridLayout">
-                  <StackLayout class="archiveViewStackLayout" col="0" (tap)="onArchive()">
-                      <Label text="ARCHIVE" verticalAlignment="center" horizontalAlignment="center"></Label>
-                  </StackLayout>
-                  <StackLayout class="deleteViewStackLayout" col="2" (tap)="onDelete()">
-                      <Label text="DELETE" verticalAlignment="center" horizontalAlignment="center"></Label>
-                  </StackLayout>
-              </GridLayout>
-          </RadListView>
-      </GridLayout>
-  </StackLayout> -->
-<!-- </RadSideDrawer> -->
-
-
-
-
-
-<DockLayout>
-    <Label class="footer" dock="bottom" height="60" backgroundColor="#56baed" text="Total Amount: {{totalAmount|currency}}"></Label>
-    <Label text=""></Label>
-  </DockLayout>
-
-<!-- <app-team-details [detail]="selectedTeam"></app-team-details> -->

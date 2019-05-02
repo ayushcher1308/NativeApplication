@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TeamService } from '../../Services/team.service';
 import { Teams } from '../../list';
+import { Page } from "tns-core-modules/ui/page";
 
 @Component({
   selector: 'app-add-edit',
@@ -14,7 +15,8 @@ export class AddEditComponent implements OnInit {
   constructor(private formBuilder:FormBuilder,
     private _route:ActivatedRoute,
     private router:Router,
-    private teamService:TeamService) { }
+    private teamService:TeamService,
+    private _page: Page) { }
 
   addTeamForm: FormGroup; 
   i;
@@ -24,6 +26,7 @@ export class AddEditComponent implements OnInit {
   @ViewChild('closeAddExpenseModal') closeAddExpenseModal: ElementRef;
   ngOnInit() {
     this.button();
+    this._page.actionBarHidden = true;
     this.addTeamForm = this.formBuilder.group({ 
       teamName: [this._route.snapshot.queryParamMap.get('team_name'), Validators.required], 
       revenue: [this._route.snapshot.queryParamMap.get('amount'), Validators.required] 
@@ -65,7 +68,7 @@ button()
         this.teamService.addTeam(data).subscribe(response => { 
         console.log(response); 
         if (response && response.status === 401) {alert("Session Expired");}
-        this.closeAddExpenseModal.nativeElement.click(); 
+        // this.closeAddExpenseModal.nativeElement.click(); 
         //  location.reload();
          this.router.navigate(['/teams']);
         }); 
@@ -84,14 +87,15 @@ button()
     };
     
     this.teamService.updateTeam(data).subscribe(response => {
+      console.log(response);
       if (response && response.status == 200) {
-        alert("Updated Succesfully");
+        
         this.details[this.i].team_name = data.team_name;
         this.details[this.i].amount = data.amount;
       }
     });
     // console.log(this.teams[this.i].team_name);
-    this.closeAddExpenseModal.nativeElement.click();    
+    // this.closeAddExpenseModal.nativeElement.click();    
       this.router.navigate(['teams']);
       // location.reload();
     }

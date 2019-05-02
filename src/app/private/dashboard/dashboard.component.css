@@ -88,17 +88,17 @@
   background: #ddd;
   color: black;
 }
-@media (max-width: 768px){
+@media (max-width: 300px){
 .container {
     width: 100% !important;
 }
 }
-@media (min-width: 768px){
+@media (min-width: 300px){
   .container {
       width: 100% !important;
   }
   }
-@media (max-width: 768px){
+@media (max-width: 300px){
   .res {
       width: 100% !important;
   }

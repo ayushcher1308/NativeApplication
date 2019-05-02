@@ -1,17 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { Teams } from '../../list';
-import { TeamService } from '../../Services/team.service';
-import { Router } from '@angular/router';
-import { DataService } from '../../Services/data.service';
-// import { ListViewEventData, RadListView } from "nativescript-telerik-ui/listview";
-// import { RadSideDrawerComponent, SideDrawerType } from "nativescript-telerik-ui/sidedrawer/angular";
-// import { View } from 'ui/core/view';
-// import * as Utils from "utils/utils";
-// import * as FrameModule from "ui/frame";
-// import * as Toast from 'nativescript-toast';
-// import { ListViewEventData } from "nativescript-ui-listview"; 
-// import { RadListViewComponent } from "nativescript-ui-listview/angular"; 
-// import { View } from 'tns-core-modules/ui/core/view'; 
+import { Component, OnInit } from '@angular/core'; 
+import { Teams } from '../../list'; 
+import { TeamService } from '../../Services/team.service'; 
+import { Router } from '@angular/router'; 
+import { DataService } from '../../Services/data.service'; 
+import { ListViewEventData } from 'nativescript-ui-listview'; 
+import { View } from 'tns-core-modules/ui/core/view'; 
+ 
 
 @Component({
   selector: 'app-dashboard',
@@ -27,6 +21,8 @@ export class DashboardComponent implements OnInit {
     teams = [];
     totalAmount: any;
     selectedTeam: Teams;
+    action;
+    bar:boolean;
    
   constructor(public teamService: TeamService,
     private router:Router,
@@ -34,12 +30,14 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     this.getTeams();
+    this.bar = true;
+    
   }
-  onSelect(detail: Teams,teamName:string,amount:string,i:string): void {
-    this.selectedTeam = detail;
+  onSelect(teamName:string,amount:string,i:string): void {
+    // this.selectedTeam = detail;
     console.log(i);
-    this.storeData.setScope(detail,i);
-    console.log(detail);
+    // this.storeData.setScope(detail,i);
+    // console.log(detail);
     this.router.navigate(['teams/team',i], {
       queryParams: { 'team_name': teamName, 'amount': amount }
     });
@@ -48,13 +46,17 @@ export class DashboardComponent implements OnInit {
 
 
   onSelectlist(args) {
-    
+
+    this.bar = false;
+    console.log(this.bar);
     this.selectedTeam = this.details[args.index];
-    // console.log(this.selectedTeam);
+    //  console.log(this.selectedTeam);
       //  require( "nativescript-localstorage" );
       //     localStorage.setItem('team_data',JSON.stringify(this.selectedTeam));
-      this.storeData.setScope(JSON.stringify(this.selectedTeam),args.index);    
-     this.router.navigate(['/teamDetails'])
+      // this.storeData.setScope(JSON.stringify(this.selectedTeam),args.index);    
+      this.router.navigate(['teams/team',args.index], {
+        queryParams: { 'team_name': this.selectedTeam.team_name, 'amount': this.selectedTeam.amount }
+      });
     
   }
 
@@ -82,8 +84,40 @@ export class DashboardComponent implements OnInit {
   // public onDelete() { }
 
   // public onArchive() { }
-
-  
+  public onCellSwiping(args: ListViewEventData) { 
+    const swipeLimits = args.data.swipeLimits; 
+    const currentItemView = args.object; 
+    if (args.data.x < -200) { 
+    console.log('Notify perform right action'); 
+    } 
+    } 
+    public onSwipeCellStarted(args: ListViewEventData) { 
+    const swipeLimits = args.data.swipeLimits; 
+    const swipeView = args['object']; 
+    const rightItem = swipeView.getViewById<View>('delete-view'); 
+    swipeLimits.right = rightItem.getMeasuredWidth(); 
+    swipeLimits.threshold = rightItem.getMeasuredWidth() ; // 2; 
+    } 
+    public onSwipeCellFinished(args: ListViewEventData) { 
+    } 
+    public onRightSwipeClick(args) { 
+      console.log('Right swipe click'); 
+      // console.log(this.teams); 
+      let dataa = { 
+      team_id : this.details[this.details.indexOf(args.object.bindingContext)].team_id 
+      }; 
+      console.log(dataa.team_id); 
+      this.teamService.deleteTeam(dataa).subscribe(response => { 
+      console.log(response); 
+      // tslint:disable-next-line: triple-equals 
+      if (response && response.status == 200) { 
+      console.log('H121'); 
+      // alert('Hello World'); 
+      // this.router.navigate(['/list']); 
+      this.getTeams(); 
+      } 
+      }); 
+      }
   
 
 

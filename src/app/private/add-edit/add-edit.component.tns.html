@@ -1,1 +1,13 @@
-<Button text="add-edit works!" class="btn btn-primary"></Button>
+<!-- <ActionBar title="{{buttonType}}" class="action-bar"> 
+
+</ActionBar>  -->
+<StackLayout class="form" [formGroup]="addTeamForm"> 
+<Label class="text-label" text="Team"></Label> 
+<TextField id="a1" class="input input-border " formControlName="teamName"></TextField> 
+
+<Label class="text-label" text="Revenue"></Label> 
+<TextField id="a1" class="input input-border" formControlName="revenue"> 
+</TextField> 
+<Button text="{{buttonType}}" (tap)="update_edit()" class="btn btn-primary m-t-20"></Button> 
+
+</StackLayout>

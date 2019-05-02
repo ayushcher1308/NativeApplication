@@ -20,16 +20,16 @@ export const routes: Routes = [
   {
       path: 'home',
       component: HomeComponent,
-      canActivate:[publicAuthGuardService],
+      // canActivate:[publicAuthGuardService],
   },
   {
       path:'teams',
       component: DashboardComponent,
-      canActivate: [AuthGuardService],
+      // canActivate: [AuthGuardService],
       children:[{
         path:'team/:i',
         component: AddEditComponent,
-        canActivate: [AuthGuardService]
+        // canActivate: [AuthGuardService]
   }],
   } ,
   // { path: '**', component: PageNotFoundComponent }
