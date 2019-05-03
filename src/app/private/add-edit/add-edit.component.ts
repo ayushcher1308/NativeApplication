@@ -3,7 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TeamService } from '../../Services/team.service';
 import { Teams } from '../../list';
-import { Page } from "tns-core-modules/ui/page";
+// import { Page } from "tns-core-modules/ui/page";
+// import * as application from "tns-core-modules/application";
 
 @Component({
   selector: 'app-add-edit',
@@ -16,7 +17,8 @@ export class AddEditComponent implements OnInit {
     private _route:ActivatedRoute,
     private router:Router,
     private teamService:TeamService,
-    private _page: Page) { }
+    // private _page: Page
+    ) { }
 
   addTeamForm: FormGroup; 
   i;
@@ -25,8 +27,12 @@ export class AddEditComponent implements OnInit {
   details: Teams[];
   @ViewChild('closeAddExpenseModal') closeAddExpenseModal: ElementRef;
   ngOnInit() {
+    // application.android.on(application.AndroidApplication.activityBackPressedEvent, (args: any) => {
+  //     args.cancel = false;
+  //     this.router.navigate(['teams']);
+  // });
     this.button();
-    this._page.actionBarHidden = true;
+    // this._page.actionBarHidden = true;
     this.addTeamForm = this.formBuilder.group({ 
       teamName: [this._route.snapshot.queryParamMap.get('team_name'), Validators.required], 
       revenue: [this._route.snapshot.queryParamMap.get('amount'), Validators.required] 
@@ -68,16 +74,18 @@ button()
         this.teamService.addTeam(data).subscribe(response => { 
         console.log(response); 
         if (response && response.status === 401) {alert("Session Expired");}
-        // this.closeAddExpenseModal.nativeElement.click(); 
+        this.closeAddExpenseModal.nativeElement.click(); 
         //  location.reload();
-         this.router.navigate(['/teams']);
+         this.router.navigate(['/teams'], {
+          queryParams: { 'refresh':true }
+        });
         }); 
         }
     }
     else
     {
       this.buttonType = 'Update Team';
-      // console.log("update");
+       console.log("update");
     this.i = this._route.snapshot.paramMap.get('i');
     console.log(this.i);
     let data = {
@@ -92,11 +100,14 @@ button()
         
         this.details[this.i].team_name = data.team_name;
         this.details[this.i].amount = data.amount;
+        alert("Team Updated Successfuly")
       }
     });
     // console.log(this.teams[this.i].team_name);
-    // this.closeAddExpenseModal.nativeElement.click();    
-      this.router.navigate(['teams']);
+    this.closeAddExpenseModal.nativeElement.click();    
+      this.router.navigate(['teams'], {
+        queryParams: { 'refresh':true}
+      });
       // location.reload();
     }
 
@@ -114,7 +125,9 @@ button()
       // location.reload();
  });
  this.closeAddExpenseModal.nativeElement.click();  
- this.router.navigate(['/teams']);
+ this.router.navigate(['/teams'],{
+  queryParams: { 'refresh':true}
+});
 
       //  location.reload();
 

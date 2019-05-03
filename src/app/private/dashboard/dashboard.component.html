@@ -6,7 +6,7 @@
     
         <div *ngFor="let detail of details;index as i"  
         [class.selected]="detail === selectedTeam"
-        (click)="onSelect(detail,detail.team_name,detail.amount,i)"
+        (click)="onSelect(detail.team_name,detail.amount,i)"
         class="col-sm-12 res">
             <div class="card" data-toggle="modal" data-target="#myModal">
             <!-- <img src="img_avatar2.png" alt="Avatar" style="width:100%"> -->

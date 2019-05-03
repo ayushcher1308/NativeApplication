@@ -13,7 +13,9 @@
  }   
  .docklayout{ 
     vertical-align: bottom; 
-    font-size: 20; 
+    font-size: 20;
+    font-weight: bold; 
+    color:blue;
     }
 
 /* .listItemStackLayout { 

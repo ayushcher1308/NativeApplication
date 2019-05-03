@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core'; 
 import { Teams } from '../../list'; 
 import { TeamService } from '../../Services/team.service'; 
-import { Router } from '@angular/router'; 
+import { Router, ActivatedRoute } from '@angular/router'; 
 import { DataService } from '../../Services/data.service'; 
 import { ListViewEventData } from 'nativescript-ui-listview'; 
 import { View } from 'tns-core-modules/ui/core/view'; 
+import * as dialogs from "tns-core-modules/ui/dialogs";
+// import { RouterExtensions } from 'nativescript-angular/router';
  
 
 @Component({
@@ -26,20 +28,30 @@ export class DashboardComponent implements OnInit {
    
   constructor(public teamService: TeamService,
     private router:Router,
+    private route:ActivatedRoute,
     private storeData:DataService) { }
 
   ngOnInit() {
+    this.route.queryParams.subscribe(params=>{
+      this.getTeams();
+      console.log("fuck yeah");
+    })
     this.getTeams();
     this.bar = true;
     
   }
+  // ngAfterViewInit(){
+  //   console.log("viewinit");
+  // }
+
+ 
   onSelect(teamName:string,amount:string,i:string): void {
     // this.selectedTeam = detail;
     console.log(i);
     // this.storeData.setScope(detail,i);
     // console.log(detail);
     this.router.navigate(['teams/team',i], {
-      queryParams: { 'team_name': teamName, 'amount': amount }
+      queryParams: { 'refresh':false,'team_name': teamName, 'amount': amount }
     });
     
   }
@@ -54,8 +66,8 @@ export class DashboardComponent implements OnInit {
       //  require( "nativescript-localstorage" );
       //     localStorage.setItem('team_data',JSON.stringify(this.selectedTeam));
       // this.storeData.setScope(JSON.stringify(this.selectedTeam),args.index);    
-      this.router.navigate(['teams/team',args.index], {
-        queryParams: { 'team_name': this.selectedTeam.team_name, 'amount': this.selectedTeam.amount }
+      this.router.navigate(['team',args.index], {
+        queryParams: { 'refresh':false,'team_name': this.selectedTeam.team_name, 'amount': this.selectedTeam.amount }
       });
     
   }

@@ -22,7 +22,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.LoginForm = this.formBuilder.group({
-      emailid: ['saral@jungleworks.com',[Validators.required, Validators.email]],
+      emailid: ['saral7@jungleworks.com',[Validators.required, Validators.email]],
       password:['123456',[Validators.required, Validators.minLength(6)]]
   });
   }
