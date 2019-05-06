@@ -32,7 +32,7 @@ but;
   {
     this.Title = 'Add New Record';
     this.but = false;
-    this.router.navigate(['teams/team','null'], {
+    this.router.navigate(['team','null'], {
       queryParams: { 'refresh':false,'team_name': null, 'amount': null }
     });
   }

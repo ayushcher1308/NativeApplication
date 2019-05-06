@@ -33,6 +33,8 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     this.route.queryParams.subscribe(params=>{
+      // console.log(this.route.snapshot.queryParamMap.get('refresh'));
+      // if(this.route.snapshot.queryParamMap.get('refresh') == 'true'){
       this.getTeams();
       console.log("fuck yeah");
     })
@@ -112,6 +114,8 @@ export class DashboardComponent implements OnInit {
     } 
     public onSwipeCellFinished(args: ListViewEventData) { 
     } 
+
+
     public onRightSwipeClick(args) { 
       console.log('Right swipe click'); 
       // console.log(this.teams); 
@@ -131,7 +135,14 @@ export class DashboardComponent implements OnInit {
       }); 
       }
   
+public onPullToRefreshInitiated(args: any) { 
 
+console.log("refresh"); 
+this.getTeams(); 
+var radListView = args.object; 
+setTimeout(() => { 
+radListView.notifyPullToRefreshFinished(); 
+}, 500);}
 
 
 }

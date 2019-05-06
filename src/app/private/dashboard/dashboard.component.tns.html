@@ -1,16 +1,15 @@
 <app-navbar></app-navbar>
     
-    <GridLayout rows="*,40"> 
-    <RadListView class="list-group" [items]="details" [class.selected]="detail === selectedTeam" (itemSwipeProgressEnded)="onSwipeCellFinished($event)" (itemTap)="onSelectlist($event)"
-    (itemSwipeProgressStarted)="onSwipeCellStarted($event)" (itemSwipeProgressChanged)="onCellSwiping($event)" swipeActions="true"> --> 
-    <PullToRefresh (refresh)="refreshMe($event)"> 
+<GridLayout rows="*,40"> 
+    <RadListView class="list-group" [items]="details" [class.selected]="detail === selectedTeam" (itemSwipeProgressEnded)="onSwipeCellFinished($event)" (itemTap)="onSelectlist($event)" 
+    (itemSwipeProgressStarted)="onSwipeCellStarted($event)" (itemSwipeProgressChanged)="onCellSwiping($event)" swipeActions="true" pullToRefresh="true" 
+    (pullToRefreshInitiated)="onPullToRefreshInitiated($event)"> 
     <ng-template let-item="item" > 
     <StackLayout class="list-group-item" orientation="vertical" style="background-color:whitesmoke" > 
     <GridLayout> 
     <Label row="0" col="0" class="team" text={{item.team_name}}></Label> 
     <Label row="0" col="1" style.textAlignment="right" text={{item.amount|currency}} ></Label> 
     </GridLayout> 
-    <!-- <StackLayout height="1" backgroundColor ="black"></StackLayout> --> 
     </StackLayout> 
     </ng-template> 
     
@@ -19,9 +18,16 @@
     <Label text="delete" class="swipeTemplateLabel" verticalAlignment="center" horizontalAlignment="center" ></Label> 
     </StackLayout> 
     </GridLayout> 
-    </PullToRefresh> 
     
     </RadListView> 
+    </GridLayout> 
+    <GridLayout rows="auto,auto" columns="auto,*" class="docklayout" 
+    stretchLastChild="false" height="60" backgroundColor="lightgray"> 
+    <Label row="0"></Label> 
+    <Label row="1" col="0" text="bottom" horizontalAlignment="left" 
+    veticalAlignment="bottom"></Label> 
+    <Label row="1" col="1" text="total" horizontalAlignment="right" 
+    veticalAlignment="bottom"></Label> 
     </GridLayout> 
     <GridLayout rows="auto,auto" columns="auto,*" class="docklayout" 
 stretchLastChild="false" height="60" backgroundColor="lightgray"> 

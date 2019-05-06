@@ -72,13 +72,15 @@ button()
         let data = {team_name: this.addTeamForm.controls.teamName.value, amount: this.addTeamForm.controls.revenue.value}; 
         console.log(data); 
         this.teamService.addTeam(data).subscribe(response => { 
-        console.log(response); 
+        // console.log(response); 
         if (response && response.status === 401) {alert("Session Expired");}
-        this.closeAddExpenseModal.nativeElement.click(); 
-        //  location.reload();
-         this.router.navigate(['/teams'], {
+        alert(this.addTeamForm.controls.teamName.value + ' added successfully');
+        this.router.navigate(['/teams'], {
           queryParams: { 'refresh':true }
         });
+        this.closeAddExpenseModal.nativeElement.click(); 
+        //  location.reload();
+  
         }); 
         }
     }
@@ -103,11 +105,12 @@ button()
         alert("Team Updated Successfuly")
       }
     });
+    this.router.navigate(['teams'], {
+      queryParams: { 'refresh':true}
+    });
     // console.log(this.teams[this.i].team_name);
     this.closeAddExpenseModal.nativeElement.click();    
-      this.router.navigate(['teams'], {
-        queryParams: { 'refresh':true}
-      });
+      
       // location.reload();
     }
 
@@ -122,12 +125,14 @@ button()
  };
  this.teamService.deleteTeam(data).subscribe(response =>{
       console.log(response);
+      // alert("Team deleted Sucessfully");
+      this.closeAddExpenseModal.nativeElement.click();  
+      this.router.navigate(['teams'], {
+       queryParams: { 'refresh':true}
+     });
       // location.reload();
  });
- this.closeAddExpenseModal.nativeElement.click();  
- this.router.navigate(['/teams'],{
-  queryParams: { 'refresh':true}
-});
+
 
       //  location.reload();
 

@@ -24,7 +24,7 @@ export const router: Routes = [
       path:'teams',
       component: DashboardComponent,
       canActivate: [AuthGuardService],
-      // canDeactivate:[publicAuthGuardService],
+      //  canDeactivate:[publicAuthGuardService],
   },
   {
     path:'team/:i',
